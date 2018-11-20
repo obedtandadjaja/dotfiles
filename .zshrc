@@ -18,6 +18,7 @@ alias cf="cd /Users/obedt/code"
 alias cgo="cd $GOPATH"
 alias k="kubectl"
 alias be="bundle exec"
+alias public-api-pod="k get pods | grep 'public-api' | head -1 | cat; k get pods | grep 'public-api' | head -1 | grep -Eo '^[^ ]+' | head -1 | tr -d '\n' | pbcopy"
 
 ##########
 # prompt #
