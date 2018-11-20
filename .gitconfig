@@ -1,0 +1,6 @@
+
+[core]
+	excludesfile = ~/.gitignore_global
+[user]
+	email = obed.tandadjaja@gmail.com
+	name = Obed Tandadjaja
