@@ -18,7 +18,6 @@ alias cf="cd /Users/obedt/code"
 alias cgo="cd $GOPATH"
 alias k="kubectl"
 alias be="bundle exec"
-alias public-api-pod="k get pods | grep 'public-api' | head -1 | cat; k get pods | grep 'public-api' | head -1 | grep -Eo '^[^ ]+' | head -1 | tr -d '\n' | pbcopy"
 
 ##########
 # prompt #
@@ -59,14 +58,14 @@ autoload -Uz compinit && compinit
 # functions #
 #############
 
-export TMP_FILE = "temporary_file"
+export TMP_FILE="temporary_file"
 
 ## Git ##
 function cleanup_merged() {
-  git branch --merged | grep -v "master" | grep -v "develop" >$TMP_FILE
+  git branch --merged | grep -v "master" | grep -v "develop" > $TMP_FILE
   if [ -s "$TMP_FILE" ]; then
       vim $TMP_FILE
-      xargs git branch -d <$TMP_FILE
+      xargs git branch -d < $TMP_FILE
       rm $TMP_FILE
   fi
 }
@@ -83,6 +82,13 @@ function cleanup_local() {
   fi
 }
 
+## Get public-api latest pod ##
+function public_api_pod() {
+  pod="$(k get pods | grep 'public-api' | head -1 | cat)";
+  echo $pod;
+  echo $pod | grep -Eo '^[^ ]+' | head -1 | tr -d '\n' | pbcopy;
+}
+
 ## General ##
 # Returns what app is running on specified port
 function whichapp() {
@@ -95,4 +101,3 @@ function whichapp() {
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-
