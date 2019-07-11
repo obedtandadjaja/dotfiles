@@ -23,23 +23,21 @@ alias be="bundle exec"
 # prompt #
 ##########
 
-autoload -U promptinit; promptinit
-prompt pure
+#autoload -U promptinit; promptinit
+#PURE_CMD_MAX_EXEC_TIME=5
+#prompt pure
 
 #########
-# PATHS #
+# theme #
 #########
 
-export PATH=./node_modules/.bin:$PATH
-export PGDATA=/usr/local/var/postgres
-export GOPATH="/Users/obedt/go"
-export PATH="$PATH:$GOPATH/bin"
+ZSH_THEME="agnoster"
 
 #########
 # pyenv #
 #########
 
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
 #######
 # nvm #
@@ -82,7 +80,7 @@ function cleanup_local() {
   fi
 }
 
-## Get public-api latest pod ##
+## Get Fair public-api latest pod ##
 function public_api_pod() {
   pod="$(k get pods | grep 'public-api' | head -1 | cat)";
   echo $pod;
@@ -94,10 +92,3 @@ function public_api_pod() {
 function whichapp() {
   lsof -i tcp:$1
 }
-
-#######
-# RVM #
-#######
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
