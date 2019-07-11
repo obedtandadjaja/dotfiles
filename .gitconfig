@@ -1,6 +1,9 @@
-
-[core]
-	excludesfile = ~/.gitignore_global
 [user]
-	email = obed.tandadjaja@gmail.com
 	name = Obed Tandadjaja
+	email = obed.tandadjaja@gmail.com
+[credential]
+	helper = osxkeychain
+[alias]
+	lol = log --pretty=format:\"%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %s\" --abbrev-commit --graph --decorate
+	lola = log --pretty=oneline --abbrev-commit --graph --decorate --all
+	branch = branch --sort=-committerdate
