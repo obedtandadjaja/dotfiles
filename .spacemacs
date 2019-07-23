@@ -341,8 +341,38 @@ you should place your code here."
    standard-indent 2
    tab-width 2
    )
-  )
-  
+
+  (add-hook 'js2-mode-hook (lambda()
+                             (setq js2-strict-missing-semi-warning nil)
+                             (setq-default js2-basic-offset 2)
+                             (setq-default js-indent-level 2)))
+
+  ;; exec path from shell path
+  (defun set-exec-path-from-shell-PATH ()
+    (let ((path-from-shell (replace-regexp-in-string
+                            "[ \t\n]*$"
+                            ""
+                            (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
+      (setenv "PATH" path-from-shell)
+      (setq eshell-path-env path-from-shell) ; for eshell users
+      (setq exec-path (split-string path-from-shell path-separator))))
+  (when window-system (set-exec-path-from-shell-PATH))
+
+  ;; set gopath
+  (setenv "GOPATH" "/Users/obedtandadjaja/go")
+
+  ;; go-mode
+  (defun my-go-mode-hook ()
+    ; Use goimports instead of go-fmt
+    (setq gofmt-command "goimports")
+    ; Call Gofmt before saving
+    (add-hook 'before-save-hook 'gofmt-before-save)
+    ; Godef jump key binding
+    (local-set-key (kbd "M-.") 'godef-jump)
+    (local-set-key (kbd "M-*") 'pop-tag-mark))
+  (add-hook 'go-mode-hook 'my-go-mode-hook)
+
+  ;; rspec configs
   (with-eval-after-load 'rspec-mode
     (defun rspec-spring-p ()
       (message (concat (rspec-project-root) "bin/spring"))
@@ -356,6 +386,7 @@ you should place your code here."
                 (if (rspec-rake-p)
                     (concat rspec-rake-command " spec")
                   rspec-spec-command)))))
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -368,7 +399,7 @@ you should place your code here."
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (enh-ruby-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode company-emacs-eclim eclim go-guru go-eldoc company-go go-mode unfill mwim disaster csv-mode company-c-headers cmake-mode clang-format protobuf-mode memoize xterm-color multi-term esh-help projectile-rails inflections feature-mode all-the-icons smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit ghub treepy graphql reveal-in-osx-finder pbcopy osx-trash osx-dictionary mmm-mode markdown-toc markdown-mode launchctl helm-company helm-c-yasnippet git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-commit with-editor git-gutter gh-md fuzzy pos-tip diff-hl company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete magit-popup yaml-mode magit rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rake minitest chruby bundler inf-ruby ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets neotree open-neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (nodejs-repl gotest zenburn-theme zen-and-art-theme white-sand-theme web-mode underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit sunny-day-theme sublime-themes subatomic256-theme subatomic-theme sql-indent powerline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme slim-mode shell-pop seti-theme scss-mode sass-mode reverse-theme rebecca-theme rbenv railscasts-theme purple-haze-theme pug-mode professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme spinner organic-green-theme open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme hungry-delete parent-mode heroku-theme hemisu-theme helm-css-scss hc-zenburn-theme haml-mode gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck flatui-theme flatland-theme farmhouse-theme exotica-theme highlight transient smartparens iedit anzu espresso-theme eshell-z eshell-prompt-extras emmet-mode f dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme company-web web-completion-data s dash color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme enh-ruby-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode company-emacs-eclim eclim go-guru go-eldoc company-go go-mode unfill mwim disaster csv-mode company-c-headers cmake-mode clang-format protobuf-mode memoize xterm-color multi-term esh-help projectile-rails inflections feature-mode all-the-icons smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit ghub treepy graphql reveal-in-osx-finder pbcopy osx-trash osx-dictionary mmm-mode markdown-toc markdown-mode launchctl helm-company helm-c-yasnippet git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-commit with-editor git-gutter gh-md fuzzy pos-tip diff-hl company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete magit-popup yaml-mode magit rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rake minitest chruby bundler inf-ruby ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets neotree open-neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
