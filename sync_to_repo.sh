@@ -26,10 +26,6 @@ echo "moving .bashrc..."
 cp ~/.bashrc ./
 echo "done"
 
-echo "moving .bash_profile..."
-cp ~/.bash_profile ./
-echo "done"
-
 echo "moving .git-completion.bash..."
 cp ~/.git-completion.bash ./
 echo "done"
