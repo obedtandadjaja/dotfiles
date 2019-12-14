@@ -167,7 +167,12 @@ let g:python3_host_prog = "/usr/local/bin/python3"
 " [Buffers] jump to the existing window
 let g:fzf_buffers_jump = 1
 
+" Ripgrep ignore filename
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 nnoremap <silent> <leader>pf :Files<Cr>
+nnoremap <silent> <leader>/ :Rg<Cr>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>w :Windows<CR>
 
