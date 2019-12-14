@@ -22,10 +22,6 @@ echo "moving .zpreztorc..."
 cp ~/.zpreztorc ./
 echo "done"
 
-echo "moving .zprofile..."
-cp ~/.zprofile ./
-echo "done"
-
 echo "moving .bashrc..."
 cp ~/.bashrc ./
 echo "done"
@@ -34,6 +30,6 @@ echo "moving .bash_profile..."
 cp ~/.bash_profile ./
 echo "done"
 
-echo "moving .git_cleanup.bash..."
-cp ~/.git_cleanup.bash ./
+echo "moving .git-completion.bash..."
+cp ~/.git-completion.bash ./
 echo "done"

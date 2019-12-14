@@ -9,6 +9,15 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+##########
+# golang #
+##########
+
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+
 ###########
 # aliases #
 ###########
@@ -52,6 +61,8 @@ export NVM_DIR="$HOME/.nvm"
 
 autoload -Uz compinit && compinit
 
+source ~/git-completion.bash
+
 #############
 # functions #
 #############
@@ -60,7 +71,7 @@ export TMP_FILE="temporary_file"
 
 ## Git ##
 function cleanup_merged() {
-  git branch --merged | grep -v "master" | grep -v "develop" > $TMP_FILE
+  git branch --merged | grep -v "master" | grep -v "dev" > $TMP_FILE
   if [ -s "$TMP_FILE" ]; then
       vim $TMP_FILE
       xargs git branch -d < $TMP_FILE
@@ -92,3 +103,9 @@ function public_api_pod() {
 function whichapp() {
   lsof -i tcp:$1
 }
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/obedtandadjaja/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/obedtandadjaja/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/obedtandadjaja/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/obedtandadjaja/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

@@ -7,3 +7,5 @@
 	lol = log --pretty=format:\"%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %s\" --abbrev-commit --graph --decorate
 	lola = log --pretty=oneline --abbrev-commit --graph --decorate --all
 	branch = branch --sort=-committerdate
+[url "git@github.com:"]
+	insteadOf = https://github.com/
