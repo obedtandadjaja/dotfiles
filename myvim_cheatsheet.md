@@ -1,6 +1,6 @@
 # NERDTree
 - Will automatically open when vim starts up with no files specified
-- `<C-n>` for toggle
+- `<space>pt` for toggle
 
 # Surround 
 ```
@@ -18,6 +18,9 @@ Hello world -> cursor in Hello and :ysiw) -> (Hello) world
 ```
 
 # Multiple cursors
+```
+go to a word and click <C-n> followed by [ESC] and insert or a command
+```
 
 # Fzf
 ```
