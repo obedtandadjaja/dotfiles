@@ -9,7 +9,7 @@
 ```
 brew install vim
 ```
-
+- Download font: https://fonts.google.com/specimen/Source+Code+Pro?selection.family=Source+Code+Pro
 - oh-my-zsh
   [GitHub - robbyrussell/oh-my-zsh: 🙃 A delightful community-driven (with 1,300+ contributors) framework for managing your zsh configuration. Includes 200+ optional plugins (rails, git, OSX, hub, capistrano, brew, ant, php, python, etc), over 140 themes to spice up your morning, and an auto-update tool so that makes it easy to keep up with the latest updates from the community.](https://github.com/robbyrussell/oh-my-zsh)
 
