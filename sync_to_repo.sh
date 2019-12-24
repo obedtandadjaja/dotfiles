@@ -26,6 +26,14 @@ echo "moving .bashrc..."
 cp ~/.bashrc ./
 echo "done"
 
+echo "moving .tmux.conf..."
+cp ~/.tmux.conf ./
+echo "done"
+
+echo "moving .tmux.conf.local..."
+cp ~/.tmux.conf.local ./
+echo "done"
+
 echo "moving git-completion.bash..."
 cp ~/git-completion.bash ./
 echo "done"
