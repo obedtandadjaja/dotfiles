@@ -9,6 +9,20 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+########
+# tmux #
+########
+
+export TERM=screen-256color
+alias tmux="tmux -2"
+if [ "$TMUX" = "" ]; then tmux; fi
+
+#######
+# vim #
+#######
+
+alias vim="mvim -v"
+
 ##########
 # golang #
 ##########

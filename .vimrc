@@ -1,4 +1,4 @@
-""""""""""""""""""""""""
+"""""""""""""""""""""""
 " Vim Plug
 """"""""""""""""""""""""
 
@@ -15,19 +15,23 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-surround'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+Plug 'cespare/vim-toml'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible             " be iMproved, required
+filetype off                 " required
 set rtp+=/usr/local/opt/fzf
 filetype plugin indent on    " required
 
@@ -37,11 +41,7 @@ filetype plugin indent on    " required
 
 syntax enable
 set t_Co=256
-if (has("termguicolors"))
-  set termguicolors
-endif
-" colorscheme OceanicNext
-let g:airline_theme='base16'
+colorscheme gruvbox
 
 set number
 set showcmd     " show command in bottom bar
@@ -52,6 +52,9 @@ set lazyredraw  " redraw only when we need to
 """"""""""""""""""""""""
 " Vim Configurations
 """"""""""""""""""""""""
+
+" Set clipboard to be system wide
+set clipboard=unnamed
 
 " Disabling swap files
 set noswapfile
@@ -110,18 +113,20 @@ nnoremap <silent> <leader>wl <C-w>l
 nnoremap <silent> <leader>w/ <C-w>v
 nnoremap <silent> <leader>w- <C-w>s
 
+" deleting buffer will not delete split
+nmap <silent> <leader>bd :bp\|bd #<Cr>
+
+" space tab to previous buffer
+nmap <silent> <leader><TAB> :b#<Cr>
+
 """"""""""""""""""""""""
 " Plugin Configurations
 """"""""""""""""""""""""
 
 let g:coc_global_extensions = [
   \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-eslint',
-  \ 'coc-prettier',
   \ 'coc-json',
-  \ 'coc-rls',
+  \ 'coc-go',
   \ ]
 
 " Remap keys for gotos
@@ -176,6 +181,20 @@ nnoremap <silent> <leader>/ :Rg<Cr>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>w :Windows<CR>
 
+let i = 1
+while i <= 9
+    execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+    let i = i + 1
+endwhile
+
+" vim-go
+let g:go_fmt_command = "goimports"
+
+" airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled = 1
+
 """"""""""""""""""""""""
 " NERDTree
 """"""""""""""""""""""""
@@ -186,6 +205,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Open NERDTree with Ctrl+n
 map <leader>pt :NERDTreeToggle<CR>
+map <leader>fT :NERDTreeFind<CR>
 
 " Close vim if the only window left open is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
