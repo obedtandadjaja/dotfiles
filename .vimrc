@@ -15,7 +15,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
@@ -24,7 +24,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
+Plug 'sonph/onehalf', { 'rtp': 'vim/' }
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-python/python-syntax'
@@ -35,21 +36,27 @@ set nocompatible             " be iMproved, required
 filetype off                 " required
 set rtp+=/usr/local/opt/fzf
 filetype plugin indent on    " required
+colorscheme onehalfdark
 
 """"""""""""""""""""""""
 " GUI
 """"""""""""""""""""""""
 
 syntax enable
-set bg=dark
+set background=dark
 set t_Co=256
-colorscheme gruvbox
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 
 set number
 set showcmd     " show command in bottom bar
 set cursorline  " show current line
 set showmatch   " highlight matching (){}{}
-set lazyredraw  " redraw only when we need to
+" set lazyredraw  " redraw only when we need to
 set mouse=nicr  " mouse scrolling
 
 """"""""""""""""""""""""
@@ -77,11 +84,12 @@ set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 set diffopt+=vertical
 
-" copy selection to clipboard - Ctrl + c
-vmap <C-c> :w !pbcopy<CR><CR>
-
 " Always show status line
 set laststatus=2
+
+" Set font
+set encoding=UTF-8
+let g:airline_powerline_fonts = 1
 
 " Tab
 set tabstop=2
@@ -188,11 +196,6 @@ let g:python_highlight_all = 1
 " [Buffers] jump to the existing window
 let g:fzf_buffers_jump = 1
 
-" Lightline
-let g:lightline = {
-      \ 'colorscheme': 'darcula',
-      \ }
-
 " Ripgrep ignore filename
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
@@ -226,6 +229,5 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.DS_Store$']
-let NERDTreeShowLineNumbers=1
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
