@@ -23,10 +23,11 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-Plug 'cespare/vim-toml'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vim-python/python-syntax'
 
 call plug#end()
 
@@ -40,6 +41,7 @@ filetype plugin indent on    " required
 """"""""""""""""""""""""
 
 syntax enable
+set bg=dark
 set t_Co=256
 colorscheme gruvbox
 
@@ -48,10 +50,16 @@ set showcmd     " show command in bottom bar
 set cursorline  " show current line
 set showmatch   " highlight matching (){}{}
 set lazyredraw  " redraw only when we need to
+set mouse=nicr  " mouse scrolling
 
 """"""""""""""""""""""""
 " Vim Configurations
 """"""""""""""""""""""""
+
+" Wildmenu - shows list in cmd
+" Type ':color <Tab>' to try
+set wildmenu
+set wildmode=longest:full,full
 
 " Set clipboard to be system wide
 set clipboard=unnamed
@@ -72,6 +80,9 @@ set diffopt+=vertical
 " copy selection to clipboard - Ctrl + c
 vmap <C-c> :w !pbcopy<CR><CR>
 
+" Always show status line
+set laststatus=2
+
 " Tab
 set tabstop=2
 set softtabstop=2
@@ -87,8 +98,7 @@ set hidden
 " set leader key to space
 let mapleader="\<Space>"
 
-set updatetime=300
-
+" set aside space for signs next to number column
 set signcolumn=yes
 
 " Use tab for trigger completion
@@ -113,6 +123,12 @@ nnoremap <silent> <leader>wl <C-w>l
 nnoremap <silent> <leader>w/ <C-w>v
 nnoremap <silent> <leader>w- <C-w>s
 
+" Buffer / Windows and files
+nnoremap <silent> <leader>pf :Files<Cr>
+nnoremap <silent> <leader>/ :Rg<Cr>
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>w :Windows<CR>
+
 " deleting buffer will not delete split
 nmap <silent> <leader>bd :bp\|bd #<Cr>
 
@@ -124,7 +140,6 @@ nmap <silent> <leader><TAB> :b#<Cr>
 """"""""""""""""""""""""
 
 let g:coc_global_extensions = [
-  \ 'coc-snippets',
   \ 'coc-json',
   \ 'coc-go',
   \ ]
@@ -168,19 +183,21 @@ command! -nargs=0 Organize :call CocAction('runCommand', 'editor.action.organize
 " Python
 let g:python_host_prog  = "/usr/bin/python"
 let g:python3_host_prog = "/usr/local/bin/python3"
+let g:python_highlight_all = 1
 
 " [Buffers] jump to the existing window
 let g:fzf_buffers_jump = 1
+
+" Lightline
+let g:lightline = {
+      \ 'colorscheme': 'darcula',
+      \ }
 
 " Ripgrep ignore filename
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
-nnoremap <silent> <leader>pf :Files<Cr>
-nnoremap <silent> <leader>/ :Rg<Cr>
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>w :Windows<CR>
-
+" Make buffers start with 1-9
 let i = 1
 while i <= 9
     execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
@@ -189,11 +206,6 @@ endwhile
 
 " vim-go
 let g:go_fmt_command = "goimports"
-
-" airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#branch#enabled = 1
 
 """"""""""""""""""""""""
 " NERDTree
@@ -214,3 +226,6 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.DS_Store$']
+let NERDTreeShowLineNumbers=1
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI=1
