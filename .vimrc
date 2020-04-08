@@ -99,6 +99,7 @@ set expandtab "tag are spaces"
 
 " for go tab is 4
 autocmd Filetype go setlocal ts=4 sw=4 sts=0 expandtab
+autocmd Filetype python setlocal ts=4 sw=4 sts=0 expandtab
 
 " Cause files to be hidden instead of closed when opening a new file
 set hidden
