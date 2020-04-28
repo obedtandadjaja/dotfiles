@@ -17,6 +17,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-surround'
 "Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'ycm-core/YouCompleteMe' " Use if coc is unbearable
 Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
 Plug '/usr/local/opt/fzf'
@@ -24,11 +25,17 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-"Plug 'morhetz/gruvbox'
 Plug 'sonph/onehalf', { 'rtp': 'vim/' }
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'bitc/vim-bad-whitespace'
+
+" Python
+Plug 'tmhedberg/SimpylFold'
 Plug 'vim-python/python-syntax'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'nvie/vim-flake8'
 
 call plug#end()
 
@@ -42,7 +49,7 @@ colorscheme onehalfdark
 " GUI
 """"""""""""""""""""""""
 
-syntax enable
+syntax on
 set background=dark
 set t_Co=256
 
@@ -99,10 +106,31 @@ set expandtab "tag are spaces"
 
 " for go tab is 4
 autocmd Filetype go setlocal ts=4 sw=4 sts=0 expandtab
-autocmd Filetype python setlocal ts=4 sw=4 sts=0 expandtab
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
 
 " Cause files to be hidden instead of closed when opening a new file
 set hidden
+
+" Give more space for displaying messages
+set cmdheight=2
+
+" Having longer updatetime (default is 4000ms = 4s) leads to noticeable
+" delays and poor user experience
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|
+set shortmess+=c
 
 " set leader key to space
 let mapleader="\<Space>"
@@ -143,6 +171,11 @@ nmap <silent> <leader>bd :bp\|bd #<Cr>
 
 " space tab to previous buffer
 nmap <silent> <leader><TAB> :b#<Cr>
+
+" enable code folding
+set foldmethod=indent
+set foldlevel=99
+nnoremap <leader> za
 
 """"""""""""""""""""""""
 " Plugin Configurations
@@ -187,7 +220,7 @@ command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " use `:Organize` for organize import of current buffer
-command! -nargs=0 Organize :call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Python
 let g:python_host_prog  = "/usr/bin/python"
@@ -210,6 +243,9 @@ endwhile
 
 " vim-go
 let g:go_fmt_command = "goimports"
+
+" SimpylFold
+let g:SimpylFold_docstring_preview=1
 
 """"""""""""""""""""""""
 " NERDTree
