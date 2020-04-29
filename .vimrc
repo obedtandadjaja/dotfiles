@@ -70,6 +70,10 @@ set mouse=nicr  " mouse scrolling
 " Vim Configurations
 """"""""""""""""""""""""
 
+" Setting column to 80 characters
+set colorcolumn=80
+highlight ColorColumn ctermbg=red guibg=red
+
 " Wildmenu - shows list in cmd
 " Type ':color <Tab>' to try
 set wildmenu
