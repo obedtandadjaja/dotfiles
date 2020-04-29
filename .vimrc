@@ -126,9 +126,6 @@ au BufNewFile,BufRead *.py
 " Cause files to be hidden instead of closed when opening a new file
 set hidden
 
-" Give more space for displaying messages
-set cmdheight=2
-
 " Having longer updatetime (default is 4000ms = 4s) leads to noticeable
 " delays and poor user experience
 set updatetime=300
@@ -203,6 +200,9 @@ EOF
 " [Buffers] jump to the existing window
 let g:fzf_buffers_jump = 1
 
+" ingore gitignored files
+let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden'
+
 " Ripgrep ignore filename
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
@@ -225,8 +225,8 @@ let g:SimpylFold_docstring_preview=1
 """"""""""""""""""""""""
 
 " Open NERDTree automatically when vim starts up if no files were specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Open NERDTree with Ctrl+n
 map <leader>pt :NERDTreeToggle<CR>

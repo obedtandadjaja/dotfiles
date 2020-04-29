@@ -34,6 +34,6 @@ echo "moving .tmux.conf.local..."
 cp ~/.tmux.conf.local ./
 echo "done"
 
-echo "moving git-completion.bash..."
-cp ~/git-completion.bash ./
+echo "moving .agignore..."
+cp ~/.agignore ./
 echo "done"
