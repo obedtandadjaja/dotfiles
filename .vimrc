@@ -182,11 +182,15 @@ nnoremap <leader> za
 " Plugin Configurations
 """"""""""""""""""""""""
 
+" YouCompleteMe
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
 " Python
 let g:python_host_prog  = "/usr/bin/python"
 let g:python3_host_prog = "/usr/local/bin/python3"
 let g:python_highlight_all = 1
-
 
 "python with virtualenv support
 py3 << EOF
