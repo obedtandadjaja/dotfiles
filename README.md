@@ -3,7 +3,7 @@ My dotfiles configuration.
 
 ## Configuration
 * Prezto - https://github.com/sorin-ionescu/prezto
-* vim
+* neovim
 * Alacritty
 * fzf
 * ag
