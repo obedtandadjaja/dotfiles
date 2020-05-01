@@ -36,3 +36,6 @@ echo "done"
 
 echo "moving .agingore..."
 cp ./.agignore ~/.
+
+echo "moving alacritty.yml..."
+cp ./alacritty.yml ~/.config/alacritty/
