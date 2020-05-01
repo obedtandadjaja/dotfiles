@@ -29,6 +29,7 @@ Plug 'sonph/onehalf', { 'rtp': 'vim/' }
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'bitc/vim-bad-whitespace'
+Plug 'liuchengxu/vim-which-key'
 
 " Python
 Plug 'tmhedberg/SimpylFold'
@@ -176,16 +177,15 @@ nmap <silent> <leader><TAB> :b#<Cr>
 " enable code folding
 set foldmethod=indent
 set foldlevel=99
-nnoremap <leader> za
 
 """"""""""""""""""""""""
 " Plugin Configurations
 """"""""""""""""""""""""
 
 " YouCompleteMe
-nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap gl :YcmCompleter GoToDeclaration<CR>
+nnoremap gf :YcmCompleter GoToDefinition<CR>
+nnoremap gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Python
 let g:python_host_prog  = "/usr/bin/python"
@@ -223,6 +223,9 @@ let g:go_fmt_command = "goimports"
 
 " SimpylFold
 let g:SimpylFold_docstring_preview=1
+
+" WhichKey
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 """"""""""""""""""""""""
 " NERDTree
