@@ -185,7 +185,7 @@ set foldlevel=99
 " YouCompleteMe
 nnoremap gl :YcmCompleter GoToDeclaration<CR>
 nnoremap gf :YcmCompleter GoToDefinition<CR>
-nnoremap gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap gt :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Python
 let g:python_host_prog  = "/usr/bin/python"
