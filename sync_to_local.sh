@@ -39,3 +39,6 @@ cp ./.agignore ~/.
 
 echo "moving alacritty.yml..."
 cp ./alacritty.yml ~/.config/alacritty/
+
+echo "moving nvim/init.vim..."
+cp ./nvim/init.vim ~/.config/nvim/init.vim

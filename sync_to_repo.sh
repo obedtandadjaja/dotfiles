@@ -41,3 +41,7 @@ echo "done"
 echo "moving alacritty.yml..."
 cp ~/.config/alacritty/alacritty.yml ./
 echo "done"
+
+echo "moving nvim/init.vim..."
+cp ~/.config/nvim/init.vim ./nvim/init.vim
+echo "done"

@@ -23,7 +23,7 @@ if [ "$TMUX" = "" ]; then work; fi
 # vim #
 #######
 
-alias vim="mvim -v"
+alias vim="nvim"
 
 ##########
 # golang #
