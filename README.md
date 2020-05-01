@@ -1,10 +1,13 @@
 # Dotfiles
-My dotfiles
+My dotfiles configuration.
 
 ## Configuration
 * Prezto - https://github.com/sorin-ionescu/prezto
 * vim
-* gitconfig
+* Alacritty
+* fzf
+* ag
+* tmux
 
 # Installation
 Note: this command will replace all your settings with the setting in the repo!
