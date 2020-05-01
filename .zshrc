@@ -13,9 +13,11 @@ fi
 # tmux #
 ########
 
+work() { tmux new-session -A -s ${1:-work}; }
+
 export TERM=screen-256color
 alias tmux="tmux -2"
-if [ "$TMUX" = "" ]; then tmux; fi
+if [ "$TMUX" = "" ]; then work; fi
 
 #######
 # vim #
@@ -31,6 +33,7 @@ export GOPATH=$HOME/go
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
+export PATH="$HOME/.cargo/bin:$PATH"
 
 ###########
 # aliases #
