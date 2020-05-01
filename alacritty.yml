@@ -87,6 +87,11 @@
   # scrollback is enabled (history > 0).
   #multiplier: 3
 
+scrolling:
+  history: 10000
+
+  multiplier: 3
+
 # Font configuration
 #font:
   # Normal (roman) font face
@@ -329,6 +334,8 @@ colors:
 # The value `0.0` is completely transparent and `1.0` is opaque.
 #background_opacity: 1.0
 
+background_opacity: 0.9
+
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
@@ -337,6 +344,8 @@ colors:
 
 # Allow terminal applications to change Alacritty's window title.
 #dynamic_title: true
+
+dynamic_title: true
 
 #cursor:
   # Cursor style
