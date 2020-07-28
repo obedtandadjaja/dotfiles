@@ -101,6 +101,12 @@ Other
 <leader> q         display pane numbers
 ```
 
+You can also manipulate it using mouse mode. Mouse mode allows you to set the
+active window, set the active pane, resize panes and automatically switches to
+copy-mode to select text.
+
+![Mouse mode](https://cloud.githubusercontent.com/assets/553208/9890797/8dffe542-5c02-11e5-9c06-a25b452e6fcc.gif)
+
 ## Copy-Paste
 
 There are several ways to do this:
