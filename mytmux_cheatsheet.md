@@ -100,3 +100,45 @@ Other
 <leader> x         kill current pane
 <leader> q         display pane numbers
 ```
+
+## Copy-Paste
+
+There are several ways to do this:
+
+1. TMUX only clipboard
+
+```
+# To copy / select using mouse
+1. Enter mouse mode - <leader> m
+2. Click and drag
+
+# To copy / select using copy-mode
+1. Enter copy mode - <leader> enter
+2. Select region with `v`
+3. Yank with `y`
+
+# To paste
+1. Get out of copy mode if you are still in it
+2. <leader> p
+3. Alternatively, you can also do <leader> ], which is the tmux default
+```
+
+2. OS clipboard - Mac OSX tested
+
+```
+# To copy / select using mouse
+1. Enter mouse mode - <leader> m
+2. While holding SHIFT, click and drag - this does normal selection of text
+3. CMD + c
+
+# To paste
+1. CMD + v
+```
+
+## Paste buffer
+
+```
+<leader> b        See all buffers
+<leader> p        Paste from the top paste buffer
+<leader> P #      Choose which buffer to paste from
+```
