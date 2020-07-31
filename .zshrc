@@ -44,6 +44,8 @@ alias cf="cd /Users/obedt/code"
 alias cgo="cd $GOPATH"
 alias k="kubectl"
 alias be="bundle exec"
+# Note that this only works on Mac
+alias apply_gitignore="git ls-files -ci --exclude-standard -z | xargs -0 git rm --cached"
 
 ##########
 # prompt #
