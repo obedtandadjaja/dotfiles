@@ -31,6 +31,9 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'bitc/vim-bad-whitespace'
 Plug 'liuchengxu/vim-which-key'
 
+" Linter
+Plug 'w0rp/ale'
+
 " Python
 Plug 'tmhedberg/SimpylFold'
 Plug 'vim-python/python-syntax'
@@ -181,6 +184,14 @@ set foldlevel=99
 """"""""""""""""""""""""
 " Plugin Configurations
 """"""""""""""""""""""""
+
+" ALE linter
+let g:ale_fixers = {
+ \ 'javascript': ['eslint']
+ \ }
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+let g:ale_fix_on_save = 1
 
 " YouCompleteMe
 nnoremap gl :YcmCompleter GoToDeclaration<CR>
