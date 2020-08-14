@@ -38,8 +38,13 @@ Plug 'w0rp/ale'
 Plug 'tmhedberg/SimpylFold'
 Plug 'vim-python/python-syntax'
 Plug 'vim-scripts/indentpython.vim'
-Plug 'vim-syntastic/syntastic'
 Plug 'nvie/vim-flake8'
+
+" Frontend
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'branch': 'release/0.x'
+  \ }
 
 call plug#end()
 
@@ -112,12 +117,10 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab "tag are spaces"
 
+" jsx should be treated like js
+autocmd BufNewFile,BufRead *.jsx set filetype=javascript
+
 " for go tab is 4
-autocmd Filetype go setlocal ts=4 sw=4 sts=0 expandtab
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2
 au BufNewFile,BufRead *.py
     \ set tabstop=4 |
     \ set softtabstop=4 |
@@ -136,6 +139,9 @@ set updatetime=300
 
 " Don't pass messages to |ins-completion-menu|
 set shortmess+=c
+
+" Complete option
+set completeopt=menu
 
 " set leader key to space
 let mapleader="\<Space>"
@@ -187,16 +193,23 @@ set foldlevel=99
 
 " ALE linter
 let g:ale_fixers = {
- \ 'javascript': ['eslint']
+ \ 'javascript': ['eslint'],
+ \ 'css': ['prettier'],
  \ }
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
-let g:ale_fix_on_save = 1
+let g:ale_javascript_eslint_use_global = 1
+
+" Prettier
+" when running at every change you may want to disable quickfix
+let g:prettier#quickfix_enabled = 0
+let g:prettier#autoformat = 0
+autocmd BufWritePre,TextChanged,InsertLeave *.jsx,*.js,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
 
 " YouCompleteMe
 nnoremap gl :YcmCompleter GoToDeclaration<CR>
 nnoremap gf :YcmCompleter GoToDefinition<CR>
 nnoremap gt :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " Python
 let g:python_host_prog  = "/usr/bin/python"
