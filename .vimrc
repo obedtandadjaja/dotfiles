@@ -171,6 +171,7 @@ nnoremap <silent> <leader>wl <C-w>l
 " Window splits
 nnoremap <silent> <leader>w/ <C-w>v
 nnoremap <silent> <leader>w- <C-w>s
+nnoremap <silent> <leader>w= <C-w>=
 
 " Buffer / Windows and files
 nnoremap <silent> <leader>pf :Files<Cr>
@@ -234,7 +235,7 @@ let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden'
 
 " Ripgrep ignore filename
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+      \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
 
 " Make buffers start with 1-9
 let i = 1

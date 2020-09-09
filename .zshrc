@@ -76,14 +76,6 @@ ZSH_THEME="agnoster"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-####################
-# git autocomplete #
-####################
-
-autoload -Uz compinit && compinit
-
-source ~/git-completion.bash
-
 #############
 # functions #
 #############
