@@ -121,6 +121,7 @@ set expandtab "tag are spaces"
 autocmd BufNewFile,BufRead *.jsx set filetype=javascript
 
 " for go tab is 4
+au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
 au BufNewFile,BufRead *.py
     \ set tabstop=4 |
     \ set softtabstop=4 |
@@ -202,7 +203,7 @@ let g:ale_javascript_eslint_use_global = 1
 " when running at every change you may want to disable quickfix
 let g:prettier#quickfix_enabled = 0
 let g:prettier#autoformat = 0
-autocmd BufWritePre,TextChanged,InsertLeave *.jsx,*.js,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
+autocmd BufWritePre *.jsx,*.js,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
 
 " YouCompleteMe
 nnoremap gl :YcmCompleter GoToDeclaration<CR>
