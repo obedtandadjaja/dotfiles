@@ -230,7 +230,7 @@ EOF
 " [Buffers] jump to the existing window
 let g:fzf_buffers_jump = 1
 
-" ingore gitignored files
+" ignore gitignored files
 let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden'
 
 " Ripgrep ignore filename
