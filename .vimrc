@@ -30,6 +30,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'bitc/vim-bad-whitespace'
 Plug 'liuchengxu/vim-which-key'
+Plug 'majutsushi/tagbar'
 
 " Linter
 Plug 'w0rp/ale'
@@ -252,6 +253,10 @@ let g:SimpylFold_docstring_preview=1
 
 " WhichKey
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+
+" tagbar
+let g:Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
+nnoremap <silent> <leader>ol :TagbarToggle<CR>
 
 """"""""""""""""""""""""
 " NERDTree

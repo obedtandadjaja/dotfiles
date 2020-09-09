@@ -1,3 +1,11 @@
+# Plug
+
+```
+:PlugInstall
+:PlugClean
+:PlugUpdate
+```
+
 # NERDTree
 - Will automatically open when vim starts up with no files specified
 - `<space>pt` for toggle
@@ -25,33 +33,6 @@ go to a word and click <C-n> followed by [ESC] and insert or a command
 # Fzf
 ```
 <space>pf -> fuzzy search files under directory
-```
-
-# Coc
-```
-gd -> go to definition
-
-gy -> go to type definition
-
-gi -> go to implementation
-
-gr -> go to references
-
-g[ -> diagnostic prev
-
-g] -> diagnostic next
-
-K -> show documentation in preview window
-
-<space>rn -> rename a variable
-
-<space>f -> format region
-
-:Format -> format current buffer
-
-:Fold -> fold current buffer
-
-:Organize -> organize imports of current buffer
 ```
 
 # Window movement
