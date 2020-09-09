@@ -7,3 +7,5 @@ export GOPATH=$(go env GOPATH)
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 
 source ~/git-completion.bash
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
