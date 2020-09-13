@@ -99,6 +99,7 @@ set noswapfile
 set ignorecase
 set incsearch   " search as characters are entered
 set hlsearch    " highlight matches
+set inccommand=nosplit
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
