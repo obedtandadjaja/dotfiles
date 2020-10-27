@@ -29,12 +29,24 @@ chsh -s /bin/zsh
 
 ```
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+
+git clone https://github.com/zdharma/fast-syntax-highlighting ~/.zsh/fast-syntax-highlighting
 ```
 
 ### neovim
 
 ```
 brew install neovim
+
+# install ycm: https://github.com/ycm-core/YouCompleteMe#macos
+```
+
+### Python
+
+```
+brew install python
+
+pip3 install --user neovim
 ```
 
 ### Tmux
@@ -56,6 +68,8 @@ brew cask install alacritty
 
 ```
 brew install fzf
+/usr/local/opt/fzf/install
+
 brew install the_silver_searcher
 brew install ripgrep
 ```
