@@ -25,6 +25,12 @@ if [ "$TMUX" = "" ]; then work; fi
 
 alias vim="nvim"
 
+##############
+# kubernetes #
+##############
+
+source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
+
 ##########
 # golang #
 ##########
