@@ -25,12 +25,6 @@ if [ "$TMUX" = "" ]; then work; fi
 
 alias vim="nvim"
 
-##############
-# kubernetes #
-##############
-
-source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
-
 ##########
 # golang #
 ##########
@@ -54,6 +48,12 @@ alias k="kubectl"
 alias be="bundle exec"
 # Note that this only works on Mac
 alias apply_gitignore="git ls-files -ci --exclude-standard -z | xargs -0 git rm --cached"
+
+###########
+# kubectl #
+###########
+
+source <(kubectl completion zsh)
 
 ##########
 # prompt #

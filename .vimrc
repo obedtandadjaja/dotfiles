@@ -71,9 +71,9 @@ endif
 
 set number
 set showcmd     " show command in bottom bar
-set cursorline  " show current line
+" set cursorline  " show current line
 " set showmatch   " highlight matching (){}{}
-" set lazyredraw  " redraw only when we need to
+set lazyredraw  " redraw only when we need to
 set mouse=nicr  " mouse scrolling
 
 """"""""""""""""""""""""
