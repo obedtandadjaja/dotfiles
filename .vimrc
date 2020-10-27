@@ -237,7 +237,7 @@ let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden'
 
 " Ripgrep ignore filename
 command! -bang -nargs=* Rg
-      \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+      \ call fzf#vim#grep("rg --column --line-number --no-heading --no-filename --color=always --smart-case ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
 
 " Make buffers start with 1-9
 let i = 1
