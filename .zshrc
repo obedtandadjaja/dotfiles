@@ -168,7 +168,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # syntax highlighting
-source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+[ -f ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ] && source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 # enables fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
