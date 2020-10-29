@@ -80,6 +80,9 @@ set mouse=nicr  " mouse scrolling
 " Vim Configurations
 """"""""""""""""""""""""
 
+" reload file when it changes on disk
+set autoread
+
 " Setting column to 80 characters
 set colorcolumn=80
 highlight ColorColumn ctermbg=red guibg=red
