@@ -54,6 +54,7 @@ alias apply_gitignore="git ls-files -ci --exclude-standard -z | xargs -0 git rm 
 ###########
 
 source <(kubectl completion zsh)
+export PATH="/Users/obedt/google-cloud-sdk/bin:$PATH"
 
 ##########
 # prompt #
