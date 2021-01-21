@@ -41,6 +41,11 @@ Plug 'vim-python/python-syntax'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'nvie/vim-flake8'
 
+" Dart
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'natebosch/vim-lsc'
+Plug 'natebosch/vim-lsc-dart'
+
 " Frontend
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
