@@ -38,6 +38,12 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 
 ###########
+# flutter #
+###########
+
+export PATH="$PATH:/Users/obedt/code/flutter/bin"
+
+###########
 # aliases #
 ###########
 
