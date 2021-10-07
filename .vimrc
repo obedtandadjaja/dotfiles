@@ -14,15 +14,12 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'tpope/vim-surround'
-"Plug 'tpope/vim-fugitive'
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'tpope/vim-abolish'
 Plug 'ycm-core/YouCompleteMe' " Use if coc is unbearable
 Plug 'airblade/vim-gitgutter'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors' " highlight word with :viw and then <C-n>
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'sonph/onehalf', { 'rtp': 'vim/' }
@@ -46,7 +43,14 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
 Plug 'natebosch/vim-lsc-dart'
 
+" Solidity
+Plug 'TovarishFin/vim-solidity'
+
+" Syntastic
+Plug 'vim-syntastic/syntastic'
+
 " Frontend
+Plug 'leafgarland/typescript-vim'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'branch': 'release/0.x'
@@ -76,8 +80,8 @@ endif
 
 set number
 set showcmd     " show command in bottom bar
-" set cursorline  " show current line
-" set showmatch   " highlight matching (){}{}
+set cursorline  " show current line
+set showmatch   " highlight matching (){}{}
 set lazyredraw  " redraw only when we need to
 set mouse=nicr  " mouse scrolling
 
@@ -103,8 +107,14 @@ set clipboard=unnamed
 " Disabling swap files
 set noswapfile
 
-" Ignore case when searching
-set ignorecase
+" Vim history
+set history=500
+
+" smarter completion by infering the case
+set infercase
+
+" Search
+set ignorecase  " ignore case
 set incsearch   " search as characters are entered
 set hlsearch    " highlight matches
 set inccommand=nosplit
@@ -125,13 +135,13 @@ let g:airline_powerline_fonts = 1
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-set expandtab "tag are spaces"
+set expandtab     " tabs are spaces
 
 " jsx should be treated like js
 autocmd BufNewFile,BufRead *.jsx set filetype=javascript
 
 " for go tab is 4
-au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
+au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4 colorcolumn=100
 au BufNewFile,BufRead *.py
     \ set tabstop=4 |
     \ set softtabstop=4 |
@@ -152,7 +162,7 @@ set updatetime=300
 set shortmess+=c
 
 " Complete option
-set completeopt=menu
+set completeopt=longest,menuone
 
 " set leader key to space
 let mapleader="\<Space>"
@@ -195,9 +205,18 @@ nmap <silent> <leader>bd :bp\|bd #<Cr>
 " space tab to previous buffer
 nmap <silent> <leader><TAB> :b#<Cr>
 
+set nowrap " don't wrap lines
+set ai " auto indent
+set si " smart indent
+
 " enable code folding
 set foldmethod=indent
 set foldlevel=99
+
+" turn off backup
+set nobackup
+set nowb
+set noswapfile
 
 """"""""""""""""""""""""
 " Plugin Configurations
@@ -206,7 +225,9 @@ set foldlevel=99
 " ALE linter
 let g:ale_fixers = {
  \ 'javascript': ['eslint'],
+ \ 'typescript': ['eslint'],
  \ 'css': ['prettier'],
+ \ 'sol': ['prettier'],
  \ }
 let g:ale_javascript_eslint_use_global = 1
 
@@ -214,14 +235,25 @@ let g:ale_javascript_eslint_use_global = 1
 " when running at every change you may want to disable quickfix
 let g:prettier#quickfix_enabled = 0
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.jsx,*.js,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
+autocmd BufWritePre *.jsx,*.js,*.json,*.css,*.scss,*.less,*.graphql,*.ts,*.tsx PrettierAsync
 
 " YouCompleteMe
 nnoremap gl :YcmCompleter GoToDeclaration<CR>
 nnoremap gf :YcmCompleter GoToDefinition<CR>
 nnoremap gt :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap gr :YcmCompleter GoToReferences<CR>
 
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Python
 let g:python_host_prog  = "/usr/bin/python"
@@ -286,5 +318,3 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.DS_Store$']
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI=1
