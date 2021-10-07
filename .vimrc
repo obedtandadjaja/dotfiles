@@ -28,6 +28,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'bitc/vim-bad-whitespace'
 Plug 'liuchengxu/vim-which-key'
 Plug 'majutsushi/tagbar'
+Plug 'jlanzarotta/bufexplorer'
 
 " Linter
 Plug 'w0rp/ale'
@@ -36,7 +37,6 @@ Plug 'w0rp/ale'
 Plug 'tmhedberg/SimpylFold'
 Plug 'vim-python/python-syntax'
 Plug 'vim-scripts/indentpython.vim'
-Plug 'nvie/vim-flake8'
 
 " Dart
 Plug 'dart-lang/dart-vim-plugin'
