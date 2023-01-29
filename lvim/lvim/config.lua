@@ -48,6 +48,14 @@ vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#330000" })
 lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
+-- Window movement
+lvim.keys.normal_mode["<leader>1"] = ":1 . wincmd w<CR>"
+lvim.keys.normal_mode["<leader>2"] = ":2 . wincmd w<CR>"
+lvim.keys.normal_mode["<leader>3"] = ":3 . wincmd w<CR>"
+lvim.keys.normal_mode["<leader>4"] = ":4 . wincmd w<CR>"
+lvim.keys.normal_mode["<leader>5"] = ":5 . wincmd w<CR>"
+lvim.keys.normal_mode["<leader>6"] = ":6 . wincmd w<CR>"
+
 lvim.builtin.which_key.mappings["w"] = {
   name = "Window",
   j = { "<C-w>j", "Pan to Window Down" },
