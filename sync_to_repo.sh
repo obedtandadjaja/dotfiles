@@ -45,3 +45,7 @@ echo "done"
 echo "moving nvim/init.vim..."
 cp ~/.config/nvim/init.vim ./nvim/init.vim
 echo "done"
+
+echo "moving lvim..."
+cp -R ~/.config/lvim ./lvim
+echo "done"
