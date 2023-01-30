@@ -44,4 +44,4 @@ echo "moving nvim/init.vim..."
 cp ./nvim/init.vim ~/.config/nvim/init.vim
 
 echo "moving lvim..."
-cp ./lvim ~/.config/lvim
+cp -R ./lvim ~/.config/lvim
