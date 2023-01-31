@@ -42,11 +42,7 @@ vim.opt.backspace = "eol,start,indent"
 -- Always show status line
 vim.opt.laststatus = 2
 
--- Line wrap
-vim.opt.wrap = true
-
 vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#330000" })
-vim.cmd('autocmd CursorHold * lua vim.diagnostic.open_float()')
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -83,18 +79,6 @@ lvim.builtin.which_key.mappings["pt"] = { "<cmd>NvimTreeToggle<CR>", "Toggle Tre
 lvim.builtin.which_key.mappings["bl"] = { "<cmd>BufferLineCycleNext<cr>", "Next" }
 lvim.builtin.which_key.mappings["bh"] = { "<cmd>BufferLineCyclePrev<cr>", "Previous" }
 
--- Trouble
-lvim.builtin.which_key.mappings["t"] = {
-  name = "Trouble",
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-  l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
-  o = { "<cmd>vim.diagnostic.open_float()<CR>" }
-}
-
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
@@ -122,22 +106,4 @@ lvim.builtin.treesitter.highlight.enable = true
 lvim.plugins = {
   { "tpope/vim-abolish" },
   { "terryma/vim-multiple-cursors" },
-  { "folke/trouble.nvim",
-    requires = "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        icons = false,
-        fold_open = "v", -- icon used for open folds
-        fold_closed = ">", -- icon used for closed folds
-        indent_lines = false, -- add an indent guide below the fold icons
-        signs = {
-          -- icons / text used for a diagnostic
-          error = "error",
-          warning = "warn",
-          hint = "hint",
-          information = "info"
-        },
-        use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
-      }
-    end },
 }
