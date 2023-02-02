@@ -1,6 +1,9 @@
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save.enabled = true
+lvim.format_on_save = {
+  enabled = true,
+  timeout = 5000,
+}
 lvim.colorscheme = "tokyonight"
 lvim.use_icons = false
 
@@ -82,6 +85,7 @@ lvim.builtin.which_key.mappings["pt"] = { "<cmd>NvimTreeToggle<CR>", "Toggle Tre
 -- Buffers
 lvim.builtin.which_key.mappings["bl"] = { "<cmd>BufferLineCycleNext<cr>", "Next" }
 lvim.builtin.which_key.mappings["bh"] = { "<cmd>BufferLineCyclePrev<cr>", "Previous" }
+lvim.keys.normal_mode["<leader><tab>"] = ":b#<cr>"
 
 -- Trouble
 lvim.builtin.which_key.mappings["t"] = {
@@ -95,11 +99,22 @@ lvim.builtin.which_key.mappings["t"] = {
   o = { "<cmd>vim.diagnostic.open_float()<CR>" }
 }
 
+-- LSP
+lvim.builtin.which_key.mappings["L"]["t"] = { "<cmd>LvimToggleFormatOnSave<cr>", "ToggleFormatOnSave" }
+
+
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.builtin.telescope.defaults.path_display = {
+  shorten = {
+    len = 3,
+    exclude = { 1, -1 }
+  },
+  truncate = true
+}
 
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
@@ -123,7 +138,6 @@ lvim.plugins = {
   { "tpope/vim-abolish" },
   { "terryma/vim-multiple-cursors" },
   { "folke/trouble.nvim",
-    requires = "nvim-tree/nvim-web-devicons",
     config = function()
       require("trouble").setup {
         icons = false,
@@ -147,6 +161,13 @@ local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   {
     command = "prettier",
-    filetypes = { "typescript", "typescriptreact" },
+    filetypes = {
+      "javascriptreact",
+      "javascript",
+      "typescript",
+      "typescriptreact",
+    },
+    autoformat = 1,
+    autoformat_require_pragma = 0,
   },
 }
