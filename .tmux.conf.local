@@ -309,3 +309,9 @@ bind -r k select-pane -U # move up
 bind -r l select-pane -R # move right
 bind > swap-pane -D      # swap current pane with next one
 bind < swap-pane -U      # swap current pane with previous one
+
+# Claude Code notifications: let OSC escape sequences pass through tmux to Ghostty,
+# and let tmux distinguish Shift+Enter from Enter
+set -g allow-passthrough on
+set -s extended-keys on
+set -as terminal-features 'xterm*:extkeys'

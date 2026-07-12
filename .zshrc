@@ -21,6 +21,7 @@ fi
 ########
 
 work() { tmux new-session -A -s ${1:-work}; }
+workweb() { tmux new-session -A -s ${1:-workweb}; }
 
 export TERM=screen-256color
 alias tmux="tmux -2"
@@ -31,6 +32,7 @@ if [ "$TMUX" = "" ]; then work; fi
 #######
 
 alias vim="nvim"
+alias lvim="/Users/obedt/.local/bin/lvim"
 
 ##########
 # golang #
@@ -139,12 +141,6 @@ function whichapp() {
   lsof -i tcp:$1
 }
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/obedtandadjaja/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/obedtandadjaja/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/obedtandadjaja/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/obedtandadjaja/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
 ###########
 # General #
 ###########
@@ -199,5 +195,9 @@ bindkey "$terminfo[cud1]" history-substring-search-down
 
 plugins=(history-substring-search fast-syntax-highlighting fzf)
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+alias cc="claude --dangerously-skip-permissions"

@@ -75,16 +75,19 @@ lvim.builtin.which_key.mappings["w"] = {
 }
 
 lvim.builtin.which_key.mappings["/"] = { "<cmd>Telescope live_grep<cr>", "Find Text" }
+lvim.builtin.which_key.mappings["pr"] = { "<cmd>Telescope resume<cr>", "Resume Search" }
 
 -- Project
 lvim.builtin.which_key.mappings["pf"] = { function()
-  require("lvim.core.telescope.custom-finders").find_project_files { previewer = false }
+  require("lvim.core.telescope.custom-finders").find_project_files { path_display = { "truncate" } }
 end, "Explore Files" }
 lvim.builtin.which_key.mappings["pt"] = { "<cmd>NvimTreeToggle<CR>", "Toggle Tree" }
 
 -- Buffers
 lvim.builtin.which_key.mappings["bl"] = { "<cmd>BufferLineCycleNext<cr>", "Next" }
 lvim.builtin.which_key.mappings["bh"] = { "<cmd>BufferLineCyclePrev<cr>", "Previous" }
+lvim.builtin.which_key.mappings["ba"] = { ':%bd!|e #|bd #|normal`"<CR>', "Close all" }
+lvim.builtin.which_key.mappings["bd"] = { ':bp|bd #"<CR>', "Close current" }
 lvim.keys.normal_mode["<leader><tab>"] = ":b#<cr>"
 
 -- Trouble
@@ -108,13 +111,6 @@ lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
-lvim.builtin.telescope.defaults.path_display = {
-  shorten = {
-    len = 3,
-    exclude = { 1, -1 }
-  },
-  truncate = true
-}
 
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
@@ -154,6 +150,13 @@ lvim.plugins = {
         use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
       }
     end },
+  {
+    "ray-x/go.nvim", -- go plugin
+    config = function()
+      require("go").setup()
+      require("go.format").goimport()
+    end,
+  },
 }
 
 -- Formatters
@@ -171,3 +174,22 @@ formatters.setup {
     autoformat_require_pragma = 0,
   },
 }
+
+-- Telescope
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
+
+local mm = {
+  ["<CR>"] = function(pb)
+    local picker = action_state.get_current_picker(pb)
+    local multi = picker:get_multi_selection()
+    actions.select_default(pb) -- the normal enter behaviour
+    for _, j in pairs(multi) do
+      if j.path ~= nil then -- is it a file -> open it as well:
+        vim.cmd(string.format("%s %s", "edit", j.path))
+      end
+    end
+  end,
+}
+
+return { defaults = { mappings = { i = mm, n = mm }, }, }
