@@ -105,6 +105,6 @@
       "wget"
       "yarn"
     ];
-    casks = [ "ghostty" "opensuperwhisper" ];
+    casks = [ "ghostty" "opensuperwhisper" "skim" ]; # skim: SyncTeX-aware PDF viewer for vimtex
   };
 }

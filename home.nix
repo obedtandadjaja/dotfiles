@@ -26,6 +26,10 @@ in
     prettier # nodePackages.* was removed in nixpkgs 26.05; top-level now
     imagemagick # image.nvim's magick_cli processor
     mermaid-cli # mmdc, used by diagram.nvim to render mermaid blocks
+    tree-sitter # nvim-treesitter's "main" branch shells out to `tree-sitter
+                # build` (needs >=0.26.1) to compile parsers from source
+    texlive.combined.scheme-basic # latex + latexmk for vimtex; bump to
+                                   # scheme-medium if a doc needs more packages
 
     # Language servers managed by nix instead of mason, so they roll
     # back with the generation and stay pinned with everything else.
