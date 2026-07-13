@@ -83,8 +83,6 @@ export PATH="/Users/obedt/google-cloud-sdk/bin:$PATH"
 # theme #
 #########
 
-# ZSH_THEME="agnoster"
-source ~/powerlevel10k/powerlevel10k.zsh-theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 #########
