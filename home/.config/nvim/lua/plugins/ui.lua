@@ -9,7 +9,18 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
-    opts = {},
+    opts = {
+      -- defaults use the same "┃" glyph for add/change, distinguished only
+      -- by color; use distinct +/~/- glyphs instead
+      signs = {
+        add = { text = "+" },
+        change = { text = "~" },
+        delete = { text = "-" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
+        untracked = { text = "┆" },
+      },
+    },
   },
   {
     "folke/which-key.nvim",
