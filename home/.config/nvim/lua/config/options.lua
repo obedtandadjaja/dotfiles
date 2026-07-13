@@ -9,7 +9,6 @@ opt.number = true
 opt.cursorline = true
 opt.showmatch = true
 opt.signcolumn = "yes"
-opt.colorcolumn = "80"
 opt.termguicolors = true
 opt.mouse = "a"
 

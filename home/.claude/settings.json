@@ -16,6 +16,7 @@
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline-command.sh\""
   },
+  "effortLevel": "high",
   "voice": {
     "enabled": false,
     "mode": "hold"
@@ -24,6 +25,5 @@
   "theme": "dark",
   "editorMode": "vim",
   "preferredNotifChannel": "ghostty",
-  "voiceEnabled": false,
-  "effortLevel": "xhigh"
+  "voiceEnabled": false
 }

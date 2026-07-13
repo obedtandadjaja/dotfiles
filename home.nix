@@ -24,6 +24,8 @@ in
     go
     gotools # goimports, run by conform.nvim on save
     prettier # nodePackages.* was removed in nixpkgs 26.05; top-level now
+    imagemagick # image.nvim's magick_cli processor
+    mermaid-cli # mmdc, used by diagram.nvim to render mermaid blocks
 
     # Language servers managed by nix instead of mason, so they roll
     # back with the generation and stay pinned with everything else.
