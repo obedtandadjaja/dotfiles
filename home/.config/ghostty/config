@@ -1,0 +1,30 @@
+font-family = JetBrainsMono Nerd Font
+font-size = 13
+
+theme = TokyoNight
+
+macos-option-as-alt = true
+window-padding-x = 4
+window-padding-y = 2
+cursor-style = block
+
+# Forward Cmd+1-9 to the terminal (as Alt+digit) instead of switching Ghostty's
+# own tabs, so tmux can bind them to jump directly between panes.
+keybind = cmd+digit_1=unbind
+keybind = cmd+digit_2=unbind
+keybind = cmd+digit_3=unbind
+keybind = cmd+digit_4=unbind
+keybind = cmd+digit_5=unbind
+keybind = cmd+digit_6=unbind
+keybind = cmd+digit_7=unbind
+keybind = cmd+digit_8=unbind
+keybind = cmd+digit_9=unbind
+keybind = cmd+digit_1=text:\x1b1
+keybind = cmd+digit_2=text:\x1b2
+keybind = cmd+digit_3=text:\x1b3
+keybind = cmd+digit_4=text:\x1b4
+keybind = cmd+digit_5=text:\x1b5
+keybind = cmd+digit_6=text:\x1b6
+keybind = cmd+digit_7=text:\x1b7
+keybind = cmd+digit_8=text:\x1b8
+keybind = cmd+digit_9=text:\x1b9
