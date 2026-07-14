@@ -28,9 +28,12 @@ in
     mermaid-cli # mmdc, used by diagram.nvim to render mermaid blocks
     tree-sitter # nvim-treesitter's "main" branch shells out to `tree-sitter
                 # build` (needs >=0.26.1) to compile parsers from source
-    texlive.combined.scheme-medium # latex + latexmk for vimtex; scheme-basic
-                                    # lacks latexmk itself plus common packages
-                                    # (listings, xcolor, enumitem, mathtools)
+    (texlive.combine { # latex + latexmk for vimtex; scheme-basic lacks
+                        # latexmk itself plus common packages. scheme-medium
+                        # covers most of them but not enumitem, so it's
+                        # added explicitly rather than jumping to scheme-full.
+      inherit (texlive) scheme-medium enumitem;
+    })
 
     # Language servers managed by nix instead of mason, so they roll
     # back with the generation and stay pinned with everything else.
@@ -50,7 +53,12 @@ in
     "$HOME/go/bin"
     "$HOME/.local/bin" # claude, getnf
     "$HOME/.cargo/bin"
-    "/usr/local/bin"
+    # /usr/local/bin removed: it was a no-op duplicate of what macOS's
+    # own path_helper (/etc/zprofile, via /etc/paths) already puts on
+    # $PATH ahead of the Nix profile dirs. Removing it here doesn't
+    # change ordering - if a stray /usr/local/bin install ever shadows
+    # a Nix-managed tool again (as an old yarn-global tree-sitter-cli
+    # once did), the fix is to remove that stray install, not this list.
   ];
 
   programs.fzf.enable = true;
