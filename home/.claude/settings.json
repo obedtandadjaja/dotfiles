@@ -25,5 +25,8 @@
   "theme": "dark",
   "editorMode": "vim",
   "preferredNotifChannel": "ghostty",
-  "voiceEnabled": false
+  "voiceEnabled": false,
+  "enabledPlugins": {
+    "lua-lsp@claude-plugins-official": true
+  }
 }

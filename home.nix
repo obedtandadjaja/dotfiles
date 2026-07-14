@@ -28,8 +28,9 @@ in
     mermaid-cli # mmdc, used by diagram.nvim to render mermaid blocks
     tree-sitter # nvim-treesitter's "main" branch shells out to `tree-sitter
                 # build` (needs >=0.26.1) to compile parsers from source
-    texlive.combined.scheme-basic # latex + latexmk for vimtex; bump to
-                                   # scheme-medium if a doc needs more packages
+    texlive.combined.scheme-medium # latex + latexmk for vimtex; scheme-basic
+                                    # lacks latexmk itself plus common packages
+                                    # (listings, xcolor, enumitem, mathtools)
 
     # Language servers managed by nix instead of mason, so they roll
     # back with the generation and stay pinned with everything else.

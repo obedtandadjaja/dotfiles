@@ -97,11 +97,14 @@
       "k9s"
       "kubernetes-cli"
       "kustomize"
+      "mlx" # Apple Silicon-optimized array framework for running ML models locally (e.g. mlx-lm)
+      "ollama" # run and serve LLMs locally via a simple CLI/API
       "openjdk"
       "postgresql@14"
       "pre-commit"
       "python@3.10"
       "universal-ctags"
+      "uv" # fast Python package/venv manager, drop-in replacement for pip/pip-tools
       "wget"
       "yarn"
     ];
